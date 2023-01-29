@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h3>Edit you product</h3>
+<form method="post" enctype="multipart/form-data" asp-action="SaveEdit">
+    <input name="Id" hidden value="@ViewBag.Product.Id" />
+    <label>Product Name:<input name="ProductName" type="text" value="@ViewBag.Product.ProductName" /></label><br />
+    <label>Info:<input name="Info" type="text" value="@ViewBag.Product.Info" /></label><br />
+    <label>Amount:<input name="Amount" type="text" value="@ViewBag.Product.Amount" /></label><br />
+    <label>Price:<input name="Price" type="text" value="@ViewBag.Product.Price" /></label><br />
+    <label>
+        Category:<select name="CategoryId">
+            @foreach(var item in ViewBag.Category)
+            {
+                @if(item.Id==ViewBag.Product.CategoryId)
+                {
+                    <option value="@item.Id" selected>@item.CategoryName</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.CategoryName</option>
+                }
+            }
+        </select>
+    </label><br />
+    <button type="submit">Save</button>
+</form>
